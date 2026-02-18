@@ -21,30 +21,23 @@ export default function App() {
       <Router>
         <ScrollToTop />
         <Routes>
-          {/* Dashboard Layout */}
           <Route element={<AppLayout />}>
-
-            {/* Others Page */}
-             <Route path="/dashboardadmin" element={<DashboardAdmin/>} />
+            <Route path="/dashboardadmin" element={<DashboardAdmin/>} />
             <Route path="/blok" element={<BlokPage/>} />
             <Route path="/rumah" element={<RumahPage />} />
             <Route path="/booking" element={<BookingAdminPage/>} />
             <Route path="/users" element={<UsersPage />} />
             <Route path="/calender" element={<Calendar />} />
             <Route path="/profile" element={<UserProfiles />} />
-
           </Route>
 
           <Route element={<AppLayoutUser />}>
-  <Route path="/dashboarduser" element={<DashboardUser />} />
-</Route>
-
+            <Route path="/dashboarduser" element={<DashboardUser />} />
+          </Route>
 
           <Route index path="/" element={<LandingPage/>} />
-          {/* Auth Layout */}
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
-          {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>

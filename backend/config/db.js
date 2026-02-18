@@ -21,7 +21,7 @@ db.getConnection((err, connection) => {
     return;
   }
   console.log('✅ MySQL Tersambung!');
-  connection.release(); // jangan lupa release koneksi kembali ke pool
+  connection.release();
 });
 
 module.exports = db;

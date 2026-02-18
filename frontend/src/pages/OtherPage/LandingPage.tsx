@@ -475,31 +475,32 @@ export default function LandingPage() {
 
 
         {/* Modal Booking */}
-        <Modal isOpen={isBookingOpen} onClose={handleCloseBookingModal} className="max-w-[400px] m-4">
-          <div className="bg-white p-4 rounded-lg dark:bg-gray-900">
-            <h4 className="text-lg font-medium mb-4">Booking Rumah NO {selectedRumah?.nomor_rumah}</h4>
-            <p>Blok : {selectedRumah?.nama_blok}</p>
-            <p>Status : <Badge size="md" color="success">{selectedRumah?.status}</Badge></p>
+<Modal isOpen={isBookingOpen} onClose={handleCloseBookingModal} className="max-w-[400px] m-4">
+  {/* Cukup tambahkan text-black dark:text-white di sini */}
+  <div className="bg-white p-4 rounded-lg dark:bg-gray-900 text-black dark:text-white">
+    <h4 className="text-lg font-medium mb-4">Booking Rumah NO {selectedRumah?.nomor_rumah}</h4>
+    <p>Blok : {selectedRumah?.nama_blok}</p>
+    <p>Status : <Badge size="md" color="success">{selectedRumah?.status}</Badge></p>
 
-            <div className="flex flex-col gap-2 mt-4">
-              <Label>Tanggal Kunjungan</Label>
-              <DatePicker
-                id="tanggal-kunjungan"
-                placeholder="Pilih tanggal"
-                onChange={(_, dateStr: string) => setTanggal(dateStr)}
-              />
-              <Label>Kontak</Label>
-              <Input type="text" value={kontak} onChange={(e) => setKontak(e.target.value)} className="border p-2 rounded" placeholder="Isi informasi kontak anda"/>
+    <div className="flex flex-col gap-2 mt-4">
+      <Label>Tanggal Kunjungan</Label>
+      <DatePicker
+        id="tanggal-kunjungan"
+        placeholder="Pilih tanggal"
+        onChange={(_, dateStr: string) => setTanggal(dateStr)}
+      />
+      <Label>Kontak</Label>
+      <Input type="text" value={kontak} onChange={(e) => setKontak(e.target.value)} className="border p-2 rounded" placeholder="Isi informasi kontak anda"/>
 
-              <Label>Catatan</Label>
-              <TextArea value={catatan} onChange={(value: string) => setCatatan(value)} className="border p-2 rounded" placeholder="Tuliskan catatan jika ada"/>
-              <div className="flex justify-end gap-2 mt-4">
-                <Button size="sm" variant="primary" onClick={handleBookingSubmit}>Kirim Booking</Button>
-                <Button size="sm" variant="outline" onClick={handleCloseBookingModal}>Batal</Button>
-              </div>
-            </div>
-          </div>
-        </Modal>
+      <Label>Catatan</Label>
+      <TextArea value={catatan} onChange={(value: string) => setCatatan(value)} className="border p-2 rounded" placeholder="Tuliskan catatan jika ada"/>
+      <div className="flex justify-end gap-2 mt-4">
+        <Button size="sm" variant="primary" onClick={handleBookingSubmit}>Kirim Booking</Button>
+        <Button size="sm" variant="outline" onClick={handleCloseBookingModal}>Batal</Button>
+      </div>
+    </div>
+  </div>
+</Modal>
       </div>
     </>
   );

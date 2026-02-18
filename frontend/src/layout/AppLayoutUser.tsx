@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
-import UserDropdown from "../components/header/UserDropdown"; // pastikan path sesuai
+import UserDropdown from "../components/header/UserDropdown"; 
 
 export default function AppLayoutUser() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -20,12 +20,14 @@ export default function AppLayoutUser() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
             {/* LOGO */}
+            <Link to="/">
              <img
               src="./images/logo/logo-icon.png"
               alt="Logo"
               width={60}
-          height={40}
+              height={40}
             />
+            </Link>
 
             {/* DESKTOP MENU */}
             <div className="hidden md:flex space-x-6 items-center">
