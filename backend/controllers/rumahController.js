@@ -9,7 +9,6 @@ exports.getAvailable = (req, res) => {
   });
 };
 
-// GET semua rumah
 exports.getRumah = (req, res) => {
   Rumah.getAll((err, result) => {
     if (err) return res.status(500).json({ message: err.message });
@@ -17,7 +16,6 @@ exports.getRumah = (req, res) => {
   });
 };
 
-// GET rumah by id
 exports.getRumahById = (req, res) => {
   const { id } = req.params;
   Rumah.getById(id, (err, result) => {
@@ -27,7 +25,6 @@ exports.getRumahById = (req, res) => {
   });
 };
 
-// CREATE rumah
 exports.createRumah = (req, res) => {
   const { blok_id, nomor_rumah, luas_tanah, luas_bangunan, status, deskripsi } = req.body || {};
   const gambar = req.file ? req.file.filename : null;
@@ -41,8 +38,6 @@ exports.createRumah = (req, res) => {
   );
 };
 
-
-// UPDATE rumah
 exports.updateRumah = (req, res) => {
   const { id } = req.params;
   const data = req.body;
@@ -63,7 +58,7 @@ exports.updateRumah = (req, res) => {
       id,
       {
         ...data,
-        gambar: gambarBaru, // null atau filename
+        gambar: gambarBaru,
       },
       (err) => {
         if (err) return res.status(500).json({ message: err.message });
@@ -73,8 +68,6 @@ exports.updateRumah = (req, res) => {
   });
 };
 
-
-// DELETE rumah
 exports.deleteRumah = (req, res) => {
   const { id } = req.params;
   Rumah.delete(id, (err, result) => {

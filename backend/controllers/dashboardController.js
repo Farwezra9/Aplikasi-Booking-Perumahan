@@ -35,7 +35,7 @@ exports.getStats = (req, res) => {
       return res.status(500).json({ message: 'Gagal mengambil data statistics terjual' });
     }
 
-    // Pastikan semua bulan tetap ada (1-12), jika bulan tertentu 0, tambahkan manual
+    
     const allMonths = [
       'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'
     ];

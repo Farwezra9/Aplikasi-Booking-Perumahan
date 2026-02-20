@@ -22,7 +22,6 @@ import { Modal } from "../../components/ui/modal";
 import { useModal } from "../../hooks/useModal";
 import Alert from "../../components/ui/alert/Alert";
 
-/* ===================== TYPE ===================== */
 interface Users {
   id: number;
   name: string;
@@ -37,11 +36,10 @@ interface AlertState {
   title: string;
   message: string;
 }
-/* ===================== COMPONENT ===================== */
 export default function UsersPage() {
   const [users, setUsers] = useState<Users[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  // Modal states
+
   const { isOpen, openModal, closeModal } = useModal();
   const [currentUsers, setCurrentUsers] = useState<Users | null>(null);
   const [formData, setFormData] = useState({
@@ -51,7 +49,7 @@ export default function UsersPage() {
       status: "" as "" | Users["status"],
     });
 
-  // Delete confirmation modal
+
     const {
       isOpen: isDeleteOpen,
       openModal: openDeleteModal,
@@ -59,7 +57,7 @@ export default function UsersPage() {
     } = useModal();
     const [usersToDelete, setUsersToDelete] = useState<Users | null>(null);
 
-  // Alert state
+
     const [alert, setAlert] = useState<AlertState>({
       show: false,
       variant: "success",
@@ -72,7 +70,7 @@ export default function UsersPage() {
       setTimeout(() => setAlert(prev => ({ ...prev, show: false })), 4000);
     };
 
-  /* ================= LOAD DATA ================= */
+
   const loadUsers = async () => {
     try {
       setLoading(true);
@@ -91,7 +89,6 @@ export default function UsersPage() {
     loadUsers();
   }, []);
 
-  /* ================= MODAL HANDLERS ================= */
   const handleOpenAdd = () => {
     setCurrentUsers(null);
     setFormData({
@@ -177,14 +174,14 @@ export default function UsersPage() {
         </Button>
       </div>
 
-        {/* Alert */}
+        
         {alert.show && (
           <div className="mb-4">
             <Alert variant={alert.variant} title={alert.title} message={alert.message} />
           </div>
         )}
 
-        {/* Table */}
+        
         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
           <div className="max-w-full overflow-x-auto">
             <Table>
@@ -244,13 +241,13 @@ export default function UsersPage() {
         </div>
       </ComponentCard>
 
-      {/* Modal Tambah/Edit */}
+      
       <Modal isOpen={isOpen} onClose={closeModal} className="max-w-[700px] m-4">
         <div className="relative w-full max-w-[700px] flex flex-col rounded-3xl bg-white p-4 dark:bg-gray-900 lg:p-11">
           <div className="mb-4">
             <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">{currentUsers ? "Edit User" : "Tambah User"}</h4>
           </div>
-            {/* Alert */}
+            
             {alert.show && (
               <div className="mb-2">
                 <Alert
@@ -312,7 +309,7 @@ export default function UsersPage() {
         </div>
       </Modal>
 
-      {/* Modal Hapus */}
+      
       <Modal isOpen={isDeleteOpen} onClose={closeDeleteModal} className="max-w-[400px] m-4">
         <div className="no-scrollbar relative overflow-y-auto rounded-3xl bg-white p-4 dark:bg-gray-900 lg:p-8">
           <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">

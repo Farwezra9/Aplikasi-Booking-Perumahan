@@ -13,7 +13,6 @@ exports.getAvailable = (callback) => {
   });
 };
 
-// Ambil semua rumah beserta nama blok
 exports.getAll = (callback) => {
   const query = `
     SELECT 
@@ -37,7 +36,6 @@ exports.getAll = (callback) => {
 };
 
 
-// Ambil rumah by id
 exports.getById = (id, callback) => {
   const query = `
     SELECT rumah.id, rumah.nomor_rumah, rumah.luas_tanah, rumah.luas_bangunan, rumah.status, rumah.gambar, rumah.deskripsi, blok.nama_blok
@@ -51,7 +49,6 @@ exports.getById = (id, callback) => {
   });
 };
 
-// Tambah rumah
 exports.create = (data, callback) => {
   const { blok_id, nomor_rumah, luas_tanah, luas_bangunan, status, gambar, deskripsi } = data;
   db.query(
@@ -64,7 +61,7 @@ exports.create = (data, callback) => {
   );
 };
 
-// Update rumah
+
 exports.update = (id, data, callback) => {
   const { blok_id, nomor_rumah, luas_tanah, luas_bangunan, status, deskripsi, gambar } = data;
 
@@ -85,9 +82,6 @@ exports.update = (id, data, callback) => {
   });
 };
 
-
-
-// Hapus rumah
 exports.delete = (id, callback) => {
   db.query('DELETE FROM rumah WHERE id = ?', [id], (err, result) => {
     if (err) return callback(err, null);

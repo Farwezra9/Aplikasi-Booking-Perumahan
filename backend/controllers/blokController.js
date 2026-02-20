@@ -1,6 +1,6 @@
 const Blok = require('../models/blokModel');
 
-// GET semua blok
+
 exports.getAll = (req, res) => {
   Blok.getAll((err, result) => {
     if (err) return res.status(500).json({ message: err.message });
@@ -8,7 +8,7 @@ exports.getAll = (req, res) => {
   });
 };
 
-// GET blok by id
+
 exports.getById = (req, res) => {
   const { id } = req.params;
   Blok.getById(id, (err, result) => {
@@ -18,7 +18,7 @@ exports.getById = (req, res) => {
   });
 };
 
-// CREATE blok
+
 exports.create = (req, res) => {
   const { nama_blok } = req.body;
   Blok.create(nama_blok, (err, result) => {
@@ -27,7 +27,7 @@ exports.create = (req, res) => {
   });
 };
 
-// UPDATE blok
+
 exports.update = (req, res) => {
   const { id } = req.params;
   const { nama_blok } = req.body;
@@ -38,7 +38,7 @@ exports.update = (req, res) => {
   });
 };
 
-// DELETE blok
+
 exports.delete = (req, res) => {
   const { id } = req.params;
   Blok.delete(id, (err, result) => {

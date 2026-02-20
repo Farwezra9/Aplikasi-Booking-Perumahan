@@ -1,6 +1,6 @@
 const User = require('../models/userModel');
 
-// Admin - ambil semua user
+
 exports.getUsers = (req, res) => {
   User.getAll((err, result) => {
     if (err) return res.status(500).json({ message: err.message });
@@ -8,7 +8,7 @@ exports.getUsers = (req, res) => {
   });
 };
 
-// Admin - detail user
+
 exports.getUserById = (req, res) => {
   User.getById(req.params.id, (err, user) => {
     if (err) return res.status(500).json({ message: err.message });
@@ -17,7 +17,7 @@ exports.getUserById = (req, res) => {
   });
 };
 
-// Admin - update user
+
 exports.updateUser = (req, res) => {
   User.update(req.params.id, req.body, (err) => {
     if (err) return res.status(500).json({ message: err.message });
@@ -25,7 +25,7 @@ exports.updateUser = (req, res) => {
   });
 };
 
-// Admin - hapus user (opsional)
+
 exports.deleteUser = (req, res) => {
   User.delete(req.params.id, (err) => {
     if (err) return res.status(500).json({ message: err.message });

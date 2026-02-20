@@ -24,7 +24,7 @@ import { Modal } from "../../components/ui/modal";
 import { useModal } from "../../hooks/useModal";
 import Alert from "../../components/ui/alert/Alert";
 
-/* ===================== TYPE ===================== */
+
 interface Rumah {
   id: number;
   nomor_rumah: string;
@@ -50,17 +50,17 @@ interface AlertState {
   message: string;
 }
 
-/* ===================== COMPONENT ===================== */
+
 export default function RumahPage() {
   const [rumah, setRumah] = useState<Rumah[]>([]);
   const [gambar, setGambar] = useState<File | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
-  // Blok select
+  
   const [blok, setBlok] = useState<Blok[]>([]);
   const [blokId, setBlokId] = useState("");
 
-  // Modal states
+  
   const { isOpen, openModal, closeModal } = useModal();
   const [currentRumah, setCurrentRumah] = useState<Rumah | null>(null);
   const [formData, setFormData] = useState({
@@ -71,7 +71,7 @@ export default function RumahPage() {
     deskripsi: "",
   });
 
-  // Delete confirmation modal
+  
   const {
     isOpen: isDeleteOpen,
     openModal: openDeleteModal,
@@ -79,7 +79,7 @@ export default function RumahPage() {
   } = useModal();
   const [rumahToDelete, setRumahToDelete] = useState<Rumah | null>(null);
 
-  // Alert state
+  
   const [alert, setAlert] = useState<AlertState>({
     show: false,
     variant: "success",
@@ -92,7 +92,7 @@ export default function RumahPage() {
     setTimeout(() => setAlert(prev => ({ ...prev, show: false })), 4000);
   };
 
-  /* ================= LOAD DATA ================= */
+  
   const loadRumah = async () => {
     try {
       setLoading(true);
@@ -121,7 +121,7 @@ export default function RumahPage() {
     loadBlok();
   }, []);
 
-  /* ================= MODAL HANDLERS ================= */
+  
   const handleOpenAdd = () => {
     setCurrentRumah(null);
     setGambar(null);
@@ -132,7 +132,7 @@ export default function RumahPage() {
       status: "",
       deskripsi: "",
     });
-    setBlokId(""); // kosongkan select blok saat tambah
+    setBlokId(""); 
     openModal();
   };
 
@@ -208,7 +208,7 @@ export default function RumahPage() {
     }
   };
 
-  /* ================= RENDER ================= */
+  
   return (
     <>
       <PageMeta title="Data Rumah | Dashboard" description="Manajemen rumah" />
@@ -223,14 +223,14 @@ export default function RumahPage() {
         </Button>
       </div>
 
-        {/* Alert */}
+        
         {alert.show && (
           <div className="mb-4">
             <Alert variant={alert.variant} title={alert.title} message={alert.message} />
           </div>
         )}
 
-        {/* Table */}
+        
         <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
           <div className="max-w-full overflow-x-auto">
             <Table>

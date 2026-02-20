@@ -10,7 +10,6 @@ export default function PublicRoute({ children }: PublicRouteProps) {
   const role = localStorage.getItem('role');
 
   if (token) {
-    // Jika sudah login, lempar ke dashboard masing-masing
     if (role === 'admin') {
       return <Navigate to="/dashboardadmin" replace />;
     }

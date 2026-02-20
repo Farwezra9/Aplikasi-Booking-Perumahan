@@ -49,11 +49,11 @@ export default function LandingPage() {
   const [currentImage, setCurrentImage] = useState(0);
   const [currentBlokIndex, setCurrentBlokIndex] = useState(0);
 
-  // ===== LOGIN STATE =====
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState<string | null>(null);
 
-  // ===== BOOKING STATE =====
+  
   const [selectedRumah, setSelectedRumah] = useState<Rumah | null>(null);
   const [tanggal, setTanggal] = useState("");
   const [kontak, setKontak] = useState("");
@@ -63,7 +63,7 @@ export default function LandingPage() {
 
   const { isOpen: isBookingOpen, openModal: openBookingModal, closeModal: closeBookingModal } = useModal();
 
-  // ===== ALERT STATE =====
+  
   const [alert, setAlert] = useState<AlertState>({
     show: false,
     variant: "success",
@@ -79,12 +79,12 @@ export default function LandingPage() {
   useEffect(() => {
     const name = localStorage.getItem("name");
     const email = localStorage.getItem("email");
-    const role = localStorage.getItem("role"); // ambil role user
+    const role = localStorage.getItem("role"); 
     setIsLoggedIn(!!name && !!email);
     setUserRole(role);
   }, []);
 
-  // Load rumah
+  
   useEffect(() => {
     loadRumah();
   }, []);
@@ -102,7 +102,7 @@ export default function LandingPage() {
     }
   };
 
-  // Load booking user jika role user
+  
   useEffect(() => {
     if (userRole === "user") {
       loadUserBookings();
@@ -125,7 +125,7 @@ export default function LandingPage() {
       return;
     }
 
-    // cek booking
+    
     const alreadyBooked = booking.find(
       (b) =>
         b.nomor_rumah === rumahItem.nomor_rumah &&
@@ -133,7 +133,7 @@ export default function LandingPage() {
     );
 
     if (alreadyBooked) {
-      // redirect ke dashboard user tab booking
+      
       navigate("/dashboarduser", { state: { tab: "booking", rumahId: rumahItem.id } });
       return;
     }
@@ -173,7 +173,7 @@ export default function LandingPage() {
     }
   };
 
-  // Hero slideshow
+  
   useEffect(() => {
     if (rumahList.length === 0) return;
     const interval = setInterval(() => {
@@ -182,7 +182,7 @@ export default function LandingPage() {
     return () => clearInterval(interval);
   }, [rumahList]);
 
-  // Kelompokkan per blok
+  
   const blokRumah = Object.entries(
     rumahList.reduce<Record<string, Rumah[]>>((acc, rumah) => {
       if (!acc[rumah.nama_blok]) acc[rumah.nama_blok] = [];
@@ -207,7 +207,7 @@ export default function LandingPage() {
         description="Booking Perumahan Murah"
       />
       <div className="bg-gray-100 min-h-screen flex flex-col">
-        {/* NAVBAR */}
+        
         <nav className="bg-white shadow-md sticky top-0 z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16 items-center">
@@ -279,7 +279,7 @@ export default function LandingPage() {
           )}
         </nav>
 
-        {/* Hero Section */}
+        
         <div id="wellcome"
           className="relative text-white min-h-[80vh] py-32 sm:py-40 px-6 sm:px-20 bg-cover bg-center transition-all duration-1000 flex items-center"
           style={{
@@ -303,7 +303,7 @@ export default function LandingPage() {
         {/* Rumah Grid */}
         <div id="daftar-rumah" className="w-full min-h-[80vh] py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
           <h2 className="text-4xl font-bold mb-12 text-center text-gray-800">Rumah Tersedia</h2>
-          {/* Alert */}
+          
             {alert.show && (
               <div className="mb-2">
                 <Alert
@@ -349,7 +349,7 @@ export default function LandingPage() {
                 ))}
               </div>
 
-              {/* Navigasi Blok */}
+              
               <div className="flex justify-center items-center gap-6 mt-4">
                 <button
                   onClick={prevBlok}
@@ -373,7 +373,7 @@ export default function LandingPage() {
           )}
         </div>
 
-        {/* Kenapa Memilih Section */}
+        
       <div className="w-full min-h-[70vh] py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="rounded-xl overflow-hidden shadow-lg">
@@ -402,7 +402,7 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* Booking Plan Section */}
+      
       <div className="w-full min-h-[70vh] py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <h2 className="text-4xl font-bold mb-12 text-center text-gray-800">Pilih Plan Anda</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 max-w-[1200px] mx-auto">
@@ -427,17 +427,17 @@ export default function LandingPage() {
 
       <footer id="footer" className="bg-gray-800 text-white py-12 mt-auto">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-    {/* Logo & copyright */}
+    
     <div className="flex flex-col items-center md:items-start text-center md:text-left">
       <div className="text-2xl font-bold text-indigo-400 mb-2">PerumKu</div>
       <p className="text-gray-400">&copy; {new Date().getFullYear()} PerumKu. All rights reserved.</p>
     </div>
 
-    {/* Kontak 2 kolom */}
+    
     <div>
       <h3 className="text-lg font-semibold text-white mb-4 text-center md:text-left">Kontak Kami</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-300">
-        {/* Kolom 1 */}
+        
         <div className="space-y-3 text-center sm:text-left">
           <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
             <span>Instagram :</span>
@@ -453,7 +453,7 @@ export default function LandingPage() {
           </div>
         </div>
 
-        {/* Kolom 2 */}
+        
         <div className="space-y-3 text-center sm:text-left">
           <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
             <span>Whatsapp :</span>
@@ -474,9 +474,9 @@ export default function LandingPage() {
 </footer>
 
 
-        {/* Modal Booking */}
+        
 <Modal isOpen={isBookingOpen} onClose={handleCloseBookingModal} className="max-w-[400px] m-4">
-  {/* Cukup tambahkan text-black dark:text-white di sini */}
+  
   <div className="bg-white p-4 rounded-lg dark:bg-gray-900 text-black dark:text-white">
     <h4 className="text-lg font-medium mb-4">Booking Rumah NO {selectedRumah?.nomor_rumah}</h4>
     <p>Blok : {selectedRumah?.nama_blok}</p>

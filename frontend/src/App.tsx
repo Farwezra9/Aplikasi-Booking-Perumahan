@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Gunakan react-router-dom
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
 import SignIn from "./pages/AuthPages/SignIn";
 import SignUp from "./pages/AuthPages/SignUp";
 import NotFound from "./pages/OtherPage/NotFound";
@@ -15,31 +15,19 @@ import UserProfiles from "./pages/Dashboard/UserProfiles";
 import LandingPage from "./pages/OtherPage/LandingPage";
 import DashboardUser from "./pages/Dashboard/UserDashboard";
 import PrivateRoute from "./components/PrivateRoute";
-import PublicRoute from "./components/PublicRoute";
 
 export default function App() {
   return (
     <Router>
       <ScrollToTop />
       <Routes>
-        {/* ================= GUEST ONLY (Public) ================= */}
-        <Route path="/signin" element={
-          <PublicRoute>
-            <SignIn />
-          </PublicRoute>
-        } />
-        <Route path="/signup" element={
-          <PublicRoute>
-            <SignUp />
-          </PublicRoute>
-        } />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
 
-        {/* ================= ADMIN ONLY (Private) ================= */}
         <Route element={
           <PrivateRoute role="admin">
             <AppLayout />
-          </PrivateRoute>
-        }>
+          </PrivateRoute>}>
           <Route path="/dashboardadmin" element={<DashboardAdmin />} />
           <Route path="/blok" element={<BlokPage />} />
           <Route path="/rumah" element={<RumahPage />} />
@@ -48,19 +36,17 @@ export default function App() {
           <Route path="/calender" element={<Calendar />} />
           <Route path="/profile" element={<UserProfiles />} />
         </Route>
-
-        {/* ================= USER ONLY (Private) ================= */}
+        
         <Route element={
           <PrivateRoute role="user">
             <AppLayoutUser />
           </PrivateRoute>
         }>
           <Route path="/dashboarduser" element={<DashboardUser />} />
+          <Route path="/profile" element={<UserProfiles />} />
         </Route>
-
-        {/* ================= OPEN ROUTES ================= */}
         <Route index element={<LandingPage />} />
-        <Route path="/403" element={<div className="flex h-screen items-center justify-center">Akses Ditolak (403)</div>} />
+        <Route path="/403" element={<NotFound />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

@@ -1,6 +1,6 @@
 const Booking = require('../models/bookingModel');
 
-// User membuat booking
+
 exports.createBooking = (req, res) => {
   const user_id = req.user.id;
   const { rumah_id, tanggal_kunjungan, kontak, catatan } = req.body;
@@ -28,7 +28,7 @@ exports.createBooking = (req, res) => {
   });
 };
 
-// Admin lihat semua booking
+
 exports.getAllBookings = (req, res) => {
   Booking.getAll((err, result) => {
     if (err) return res.status(500).json({ message: err.message });
@@ -36,7 +36,7 @@ exports.getAllBookings = (req, res) => {
   });
 };
 
-// Admin update status booking
+
 exports.updateBookingStatus = (req, res) => {
   const { id } = req.params;
   const { status } = req.body;
@@ -47,7 +47,7 @@ exports.updateBookingStatus = (req, res) => {
   });
 };
 
-// User lihat booking miliknya
+
 exports.getUserBookings = (req, res) => {
   const user_id = req.user.id;
   Booking.getByUser(user_id, (err, result) => {
